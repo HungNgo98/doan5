@@ -15,7 +15,7 @@ ngAfterViewInit(){
   });
 }
   public loadScripts() {
-    this.renderExternalScript('assets/js/main.js').onload = () => {
+    this.renderExternalScript('assets/js/_ProductDetail.min.js').onload = () => {
     }
   }
 public renderExternalScript(src: string): HTMLScriptElement {
