@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Doan5';
+  title = 'doan5';
+  constructor (private renderer: Renderer2){}
+ngAfterViewInit(){
+  setTimeout(() => 
+  {
+    this.loadScripts();
+  });
+}
+  public loadScripts() {
+    this.renderExternalScript('assets/js/main.js').onload = () => {
+    }
+  }
+public renderExternalScript(src: string): HTMLScriptElement {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = src;
+    script.async = true;
+    script.defer = true;
+    this.renderer.appendChild(document.body, script);
+    return script;
+  }
 }
